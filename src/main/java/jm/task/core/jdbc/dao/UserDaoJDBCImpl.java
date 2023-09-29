@@ -17,6 +17,7 @@ public class UserDaoJDBCImpl implements UserDao {
 
     }
 
+    @Override
     public void createUsersTable() {
         String createQuery = """
                 create table users (ID int auto_increment primary key,
@@ -25,6 +26,7 @@ public class UserDaoJDBCImpl implements UserDao {
                                     Age tinyint null);
                 """;
         try (Statement statement = connection.createStatement()) {
+            if (statement.execute(""));
             statement.execute(createQuery);
             log.info("Таблица создана.\n");
         } catch (SQLException e) {
@@ -32,6 +34,7 @@ public class UserDaoJDBCImpl implements UserDao {
         }
     }
 
+    @Override
     public void dropUsersTable() {
         String dropQuery = "DROP TABLE Users;";
         try (Statement statement = connection.createStatement()) {
@@ -42,6 +45,7 @@ public class UserDaoJDBCImpl implements UserDao {
         }
     }
 
+    @Override
     public void saveUser(String name, String lastName, byte age) {
         String saveQuery = "INSERT INTO Users (Name, Last_Name, Age) VALUES (?, ?, ?)";
         try (PreparedStatement preparedStatement = connection.prepareStatement(saveQuery)) {
@@ -55,6 +59,7 @@ public class UserDaoJDBCImpl implements UserDao {
         }
     }
 
+    @Override
     public void removeUserById(long id) {
         String removeQuery = "DELETE FROM Users WHERE ID = ?";
         try (PreparedStatement preparedStatement = connection.prepareStatement(removeQuery)) {
@@ -66,6 +71,7 @@ public class UserDaoJDBCImpl implements UserDao {
         }
     }
 
+    @Override
     public List<User> getAllUsers() throws SQLException {
         List<User> userList = new ArrayList<>();
         String selectQuery = "SELECT * FROM Users;";
@@ -86,6 +92,7 @@ public class UserDaoJDBCImpl implements UserDao {
         return userList;
     }
 
+    @Override
     public void cleanUsersTable() {
         String truncateQuery = "TRUNCATE TABLE Users";
         try (Statement statement = connection.createStatement()) {

@@ -7,29 +7,36 @@ import java.sql.SQLException;
 import java.util.List;
 
 public class UserServiceImpl implements UserService {
+
     private final UserDaoJDBCImpl userDaoJDBC = new UserDaoJDBCImpl();
 
+    @Override
     public void createUsersTable() {
         userDaoJDBC.createUsersTable();
     }
 
+    @Override
     public void dropUsersTable() {
         userDaoJDBC.dropUsersTable();
     }
 
+    @Override
     public void saveUser(String name, String lastName, byte age) {
         userDaoJDBC.saveUser(name, lastName, age);
         System.out.println("User с именем - " + name + " добавлен в базу данных");
     }
 
+    @Override
     public void removeUserById(long id) {
         userDaoJDBC.removeUserById(id);
     }
 
+    @Override
     public List<User> getAllUsers() throws SQLException {
         return userDaoJDBC.getAllUsers();
     }
 
+    @Override
     public void cleanUsersTable() {
         userDaoJDBC.cleanUsersTable();
     }
