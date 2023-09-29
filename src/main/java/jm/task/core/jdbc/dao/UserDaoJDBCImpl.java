@@ -26,7 +26,6 @@ public class UserDaoJDBCImpl implements UserDao {
                                     Age tinyint null);
                 """;
         try (Statement statement = connection.createStatement()) {
-            if (statement.execute(""));
             statement.execute(createQuery);
             log.info("Таблица создана.\n");
         } catch (SQLException e) {
