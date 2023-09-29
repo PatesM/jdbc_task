@@ -20,13 +20,12 @@ public class UserDaoJDBCImpl implements UserDao {
     @Override
     public void createUsersTable() {
         String createQuery = """
-                create table users (ID int auto_increment primary key,
+                CREATE TABLE IF NOT EXISTS users (ID int auto_increment primary key,
                                     Name varchar(45) null,
                                     Last_Name varchar(45) null,
                                     Age tinyint null);
                 """;
         try (Statement statement = connection.createStatement()) {
-            if (statement.execute(""));
             statement.execute(createQuery);
             log.info("Таблица создана.\n");
         } catch (SQLException e) {
@@ -36,7 +35,7 @@ public class UserDaoJDBCImpl implements UserDao {
 
     @Override
     public void dropUsersTable() {
-        String dropQuery = "DROP TABLE Users;";
+        String dropQuery = "DROP TABLE IF EXISTS Users;";
         try (Statement statement = connection.createStatement()) {
             statement.execute(dropQuery);
             log.info("Таблица удалена.\n");
