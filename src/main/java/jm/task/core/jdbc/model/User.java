@@ -1,5 +1,6 @@
 package jm.task.core.jdbc.model;
 
+import lombok.EqualsAndHashCode;
 import lombok.ToString;
 
 import javax.persistence.Column;
@@ -7,6 +8,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Table
+@EqualsAndHashCode
 @ToString
 public class User {
     @Id
