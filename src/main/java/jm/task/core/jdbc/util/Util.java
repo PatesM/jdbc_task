@@ -12,7 +12,7 @@ public class Util {
     private static final String DATABASE_URL = "jdbc:mysql://localhost:3306/jdbc_task";
     private static final String USER_NAME = "PatesM";
     private static final String PASSWORD = "root";
-    public static Connection connection;
+    private static Connection connection;
 
     public static Connection getConnection() {
         try {
